@@ -115,18 +115,11 @@ O diagrama de casos de uso do **LifeSupport** representa graficamente as intera�
 - os atores: Visitante, Solicitante, Apoiador (Doador);
 - os casos de uso descritos anteriormente (UC01 a UC16).
 
-Recomenda-se criar o diagrama utilizando uma ferramenta como:
 
-- <a href="https://app.diagrams.net" target="_blank" style="text-decoration: underline;">https://app.diagrams.net</a>  
-- ou <a href="https://plantuml.com/pt/use-case-diagram" target="_blank" style="text-decoration: underline;">https://plantuml.com/pt/use-case-diagram</a>
-
-Após criar o diagrama, salve-o como uma imagem (por exemplo, `casos-de-uso-lifesupport.png`) na pasta `docs/images/` e referencie-o abaixo:
-
-```markdown
 ![Diagrama de casos de uso do LifeSupport](img/casosDeUso.png)
-```
+
 
 Esse diagrama servirá de base para:
 
-- o **projeto de arquitetura** (TP2, modelo C4);
-- a **definição de casos de teste** (TP4 e TP5).
+- o **projeto de arquitetura** (SPT2, modelo C4);
+- a **definição de casos de teste** (SPT4 e SPT5).
