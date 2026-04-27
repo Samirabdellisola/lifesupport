@@ -70,3 +70,11 @@ A solução é composta por:
 O Diagrama de Contexto apresenta o **LifeSupport** como um sistema único e mostra como diferentes tipos de usuários interagem com ele.
 
 ![Diagrama de Contexto – LifeSupport](../img/Contexto.png)
+
+### 3.2. Diagrama de Contêineres (Nível 2)
+
+O Diagrama de Contêineres detalha os principais blocos (contêineres) que compõem o **LifeSupport** e como eles se comunicam.
+
+```markdown
+![Diagrama de Contêineres – LifeSupport](images/c4-containers-lifesupport.png)
+```
