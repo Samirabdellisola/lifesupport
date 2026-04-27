@@ -116,7 +116,7 @@ O diagrama de casos de uso do **LifeSupport** representa graficamente as intera√
 - os casos de uso descritos anteriormente (UC01 a UC16).
 
 
-![Diagrama de casos de uso do LifeSupport](img/casosDeUso.png)
+![Diagrama de casos de uso do LifeSupport](img/CasosDeUso.png)
 
 
 Esse diagrama servir√° de base para:
