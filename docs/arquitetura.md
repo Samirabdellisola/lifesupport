@@ -69,6 +69,4 @@ A solução é composta por:
 
 O Diagrama de Contexto apresenta o **LifeSupport** como um sistema único e mostra como diferentes tipos de usuários interagem com ele.
 
-```markdown
-![Diagrama de Contexto – LifeSupport](images/c4-contexto-lifesupport.png)
-```
+![Diagrama de Contexto – LifeSupport](../img/Contexto.png)
