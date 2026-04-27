@@ -75,6 +75,35 @@ O Diagrama de Contexto apresenta o **LifeSupport** como um sistema único e most
 
 O Diagrama de Contêineres detalha os principais blocos (contêineres) que compõem o **LifeSupport** e como eles se comunicam.
 
-```markdown
-![Diagrama de Contêineres – LifeSupport](images/c4-containers-lifesupport.png)
-```
+![Diagrama de Contêineres – LifeSupport](../img/Containers.png)
+
+## 4. Justificativa da arquitetura
+
+A arquitetura proposta segue o padrão **cliente-servidor**, separando claramente:
+
+- a camada de apresentação (**frontend**, em React + TypeScript);
+- a camada de lógica de negócio e acesso a dados (**backend**, em C# / ASP.NET Core);
+- a camada de persistência (**banco de dados** relacional).
+
+Essa abordagem é adequada ao LifeSupport porque:
+
+1. **Atende ao escopo do trabalho**  
+   - O projeto exige uma solução com mais de um componente (não apenas frontend);
+   - A separação em frontend + backend facilita o cumprimento dos requisitos de autenticação, verificação de identidade, registro de apoios, pontuação e ranking.
+
+2. **Facilita a manutenção e evolução**  
+   - A interface pode evoluir independentemente da API;
+   - Novas funcionalidades (por exemplo, integração com serviços de pagamento ou envio de e-mails) podem ser adicionadas no backend sem impacto direto na estrutura do frontend.
+
+3. **Escalabilidade**  
+   - O backend pode ser escalado de forma independente do frontend;
+   - O uso de uma API REST permite, no futuro, que outros clientes (por exemplo, aplicativos mobile) consumam os mesmos serviços.
+
+4. **Aproveitamento de tecnologias consolidadas**  
+   - **React + TypeScript** permitem uma interface rica, tipada e mais segura em tempo de desenvolvimento;
+   - **C# / ASP.NET Core** é um stack maduro e com bom suporte para construção de APIs robustas;
+   - Bancos relacionais são adequados ao modelo de dados do LifeSupport (usuários, pedidos, apoios, pontos, etc.).
+
+5. **Organização e clareza para o projeto da disciplina**  
+   - O uso do modelo C4 ajuda a documentar a solução em diferentes níveis de detalhe;
+   - A arquitetura fica compreensível tanto para professores quanto para outros desenvolvedores que venham a contribuir com o projeto.
