@@ -123,7 +123,7 @@ Recomenda-se criar o diagrama utilizando uma ferramenta como:
 Após criar o diagrama, salve-o como uma imagem (por exemplo, `casos-de-uso-lifesupport.png`) na pasta `docs/images/` e referencie-o abaixo:
 
 ```markdown
-![Diagrama de casos de uso do LifeSupport](images/casos-de-uso-lifesupport.png)
+![Diagrama de casos de uso do LifeSupport](img/casosDeUso.png)
 ```
 
 Esse diagrama servirá de base para:
