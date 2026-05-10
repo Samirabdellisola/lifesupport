@@ -1,0 +1,193 @@
+# Regras do Cursor
+
+Este documento contém as regras e padrões a serem seguidos no desenvolvimento do projeto.
+
+## 1. useEffect
+
+OBRIGATÓRIO: Crie função nomeada separada. NUNCA passe função anônima inline.
+
+```typescript
+const onComponentMount = () => {
+  // código aqui
+};
+
+useEffect(onComponentMount, []);
+```
+
+```typescript
+const onCharParamsChange = () => {
+  if (!IdPersonagem) {
+    navigate(paths.user.personagens.goTo(arrChars.value[0].idChar));
+    return;
+  }
+};
+
+useEffect(onCharParamsChange, [IdPersonagem, arrChars.value.length]);
+```
+
+## 2. Nomenclatura
+
+### Handlers de eventos:
+- Prefixo `handle`: `handleSave`, `handleDisciplineChange`, `handleClick`
+
+### Callbacks de useEffect:
+- Prefixo `on`: `onComponentMount`, `onCharParamsChange`, `onUserUpdate`
+
+### Estados locais:
+- Nomes descritivos: `localDisciplines`, `hasChanges`, `isLoading`
+
+## 3. Loading/Spinner
+
+Use `VampireLoader` para loading de API.
+
+```typescript
+import { VampireLoader } from "path/VampireLoader";
+
+<VampireLoader loading={request.status === 'loading'} />
+```
+
+## 4.1 Estados Booleanos
+
+OBRIGATÓRIO: Use `useBoolean` do `react-hanger` para estados booleanos ao invés de `useState`.
+
+❌ **ERRADO:**
+```typescript
+const [isOpen, setIsOpen] = useState(false);
+const [loading, setLoading] = useState(false);
+```
+
+✅ **CORRETO:**
+```typescript
+import { useBoolean } from 'react-hanger';
+
+const isOpen = useBoolean(false);
+const loading = useBoolean(false);
+
+// Uso
+isOpen.setTrue();
+isOpen.setFalse();
+isOpen.toggle();
+```
+
+## 5. Componentização e Styled Components
+
+### 5.1 Elementos de Marcação
+OBRIGATÓRIO: NÃO crie styled-components para elementos de marcação simples (span, img, p, h1, etc).
+
+❌ **ERRADO:**
+```typescript
+const Title = styled.span`
+  font-size: 18px;
+  color: #c9b8a0;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+// Uso
+<Title>Texto</Title>
+<Image src="..." />
+```
+
+✅ **CORRETO:**
+```typescript
+const Container = styled.div`
+  .title {
+    font-size: 18px;
+    color: #c9b8a0;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+// Uso
+<Container>
+  <span className="title">Texto</span>
+  <img className="image" src="..." />
+</Container>
+```
+
+### 5.2 O que Componetizar
+- ✅ Componetize apenas **divs e containers principais**
+- ✅ Use **seletores CSS** (`.title`, `.image`) para elementos de marcação
+- ❌ Evite styled-components soltos - eles confundem e dificultam a leitura
+
+### 5.3 Separação de Responsabilidades
+Cada arquivo de componente deve ter **1 ou 2 responsabilidades**, não mais.
+
+✅ **BOM:**
+- `RelationCard.tsx` - Exibe um card de relação
+- `AddRelationForm.tsx` - Formulário de adicionar relação
+- `Relations.tsx` - Orquestra os componentes (lista, adiciona, deleta)
+
+❌ **RUIM:**
+- `Relations.tsx` - 700 linhas fazendo tudo (renderizar, adicionar, editar, deletar, estilizar)
+
+## 6. Centralização de Dados
+
+### 6.1 Arquivo de Data
+Centralize dados estáticos, configurações e regras de negócio em arquivos `src/data/`.
+
+Siga o padrão:
+```typescript
+import { createRepository } from "../utils/repository";
+
+export interface MinhaEntidade {
+  id: number;
+  nome: string;
+  cor: string;
+  // ... outros campos
+}
+
+const value = Object.freeze({
+  TIPO_A: {
+    id: 1,
+    nome: "Tipo A",
+    cor: "#4a7c59",
+  },
+  TIPO_B: {
+    id: 2,
+    nome: "Tipo B",
+    cor: "#cd8933",
+  },
+}) satisfies Record<string, MinhaEntidade>;
+
+export const minhasEntidades = createRepository(value);
+export type MinhaEntidadeKey = keyof typeof minhasEntidades.value;
+```
+## 7. Posição dos Styled Components
+
+OBRIGATÓRIO: Declare todos os styled-components **depois** do componente React (após o `export default`), nunca antes.
+
+❌ **ERRADO:**
+```typescript
+const Container = styled.div`
+  padding: 16px;
+`;
+
+const MyComponent = () => {
+  return <Container>...</Container>
+}
+
+export default MyComponent
+```
+
+✅ **CORRETO:**
+```typescript
+const MyComponent = () => {
+  return <Container>...</Container>
+}
+
+export default MyComponent
+
+const Container = styled.div`
+  padding: 16px;
+`
+```
+
+Isso mantém a lógica do componente no topo do arquivo e os detalhes de estilo no final, facilitando a leitura.
