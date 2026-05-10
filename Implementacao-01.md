@@ -32,7 +32,7 @@ Neste estágio, o foco foi **consolidar o frontend e a navegação entre as prin
 O vídeo demonstrando o estado atual da aplicação no SP3 está disponível a seguir:
 
 <p align="center">
-  <video src="Videos/SP3-Lifesupport.mp4" controls width="720">
+  <video src="videos/entregavel-01.mkv" controls width="720">
     Seu navegador não suporta a exibição de vídeos.
   </video>
 </p>
