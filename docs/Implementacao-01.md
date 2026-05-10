@@ -30,6 +30,7 @@ Neste estágio, o foco foi **consolidar o frontend e a navegação entre as prin
 ## Vídeo da entrega
 
 O vídeo demonstrando o estado atual da aplicação no SP3 está disponível a seguir:
+[Teste de vídeo](../videos/entregavel-01.mp4)
 
 <p align="center">
   <video controls width="720">
@@ -37,4 +38,3 @@ O vídeo demonstrando o estado atual da aplicação no SP3 está disponível a s
     Seu navegador não suporta a exibição de vídeos.
   </video>
 </p>
- [Teste de vídeo](../videos/entregavel-01.mp4)
