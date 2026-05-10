@@ -37,3 +37,4 @@ O vídeo demonstrando o estado atual da aplicação no SP3 está disponível a s
     Seu navegador não suporta a exibição de vídeos.
   </video>
 </p>
+ [Teste de vídeo](../videos/entregavel-01.mp4)
