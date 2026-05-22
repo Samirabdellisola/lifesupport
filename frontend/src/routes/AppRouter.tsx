@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import AppLayout from './AppLayout'
 import ScreenHome from '../pages/Home/ScreenHome'
 import ScreenCampaign from '../pages/Campaign/ScreenCampaign'
+import ScreenCampaignCreate from '../pages/CampaignCreate/ScreenCampaignCreate'
+import ScreenRankings from '../pages/Rankings/ScreenRankings'
 import ScreenUser from '../pages/User/ScreenUser'
 import { AppPaths } from './paths/AppPaths'
 
@@ -11,6 +13,8 @@ const router = createBrowserRouter([
     children: [
       { path: AppPaths.home, element: <ScreenHome /> },
       { path: AppPaths.campaign.detail, element: <ScreenCampaign /> },
+      { path: AppPaths.campaign.create, element: <ScreenCampaignCreate /> },
+      { path: AppPaths.rankings, element: <ScreenRankings /> },
       { path: AppPaths.user, element: <ScreenUser /> },
     ],
   },

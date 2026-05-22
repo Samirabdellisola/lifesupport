@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Phone, MessageCircle, Globe } from 'lucide-react'
-import type { UserProfile } from '../ScreenUser'
+import type { UserProfile } from '../../../data/authStorage'
 
 interface Props {
   contacts: UserProfile['contacts']

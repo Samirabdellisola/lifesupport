@@ -3,7 +3,7 @@ import { useBoolean } from 'react-hanger'
 import styled from 'styled-components'
 
 interface Props {
-  onLogin: (name: string) => void
+  onLogin: (name: string, email: string) => void
 }
 
 const GuestView = ({ onLogin }: Props) => {
@@ -14,7 +14,7 @@ const GuestView = ({ onLogin }: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onLogin(name || email)
+    onLogin(name, email)
   }
 
   return (

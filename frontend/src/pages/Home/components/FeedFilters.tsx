@@ -3,7 +3,9 @@ import styled from 'styled-components'
 export interface FilterState {
   title: string
   requesterName: string
+  helpType: string
   city: string
+  status: string
   country: string
   dateFrom: string
   dateTo: string
@@ -43,6 +45,21 @@ const FeedFilters = ({ filters, onChange }: Props) => {
           />
         </div>
         <div className="field">
+          <label htmlFor="filter-help-type">Tipo de ajuda</label>
+          <select
+            id="filter-help-type"
+            value={filters.helpType}
+            onChange={(e) => handleChange('helpType', e.target.value)}
+          >
+            <option value="">Todos</option>
+            <option value="Financeira">Financeira</option>
+            <option value="Alimentos">Alimentos</option>
+            <option value="Roupas">Roupas</option>
+            <option value="Serviços">Serviços</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div className="field">
           <label htmlFor="filter-city">Cidade</label>
           <input
             id="filter-city"
@@ -51,6 +68,19 @@ const FeedFilters = ({ filters, onChange }: Props) => {
             value={filters.city}
             onChange={(e) => handleChange('city', e.target.value)}
           />
+        </div>
+        <div className="field">
+          <label htmlFor="filter-status">Status</label>
+          <select
+            id="filter-status"
+            value={filters.status}
+            onChange={(e) => handleChange('status', e.target.value)}
+          >
+            <option value="">Todos</option>
+            <option value="Aberto">Aberto</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluído">Concluído</option>
+          </select>
         </div>
         <div className="field">
           <label htmlFor="filter-country">País</label>
@@ -113,7 +143,8 @@ const FiltersContainer = styled.div`
       letter-spacing: 0.4px;
     }
 
-    input {
+    input,
+    select {
       padding: 8px 10px;
       border: 1px solid #dde1e7;
       border-radius: 8px;

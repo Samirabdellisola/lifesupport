@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import type { UserProfile } from '../ScreenUser'
+import type { UserProfile } from '../../../data/authStorage'
 
 interface Props {
   address: UserProfile['address']

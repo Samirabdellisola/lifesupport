@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { LogOut } from 'lucide-react'
-import type { UserProfile } from '../ScreenUser'
+import type { UserProfile } from '../../../data/authStorage'
 import ProfilePhotoSection from './ProfilePhotoSection'
 import AddressSection from './AddressSection'
 import ContactSection from './ContactSection'
 import RankingSection from './RankingSection'
 import AuthenticateSection from './AuthenticateSection'
+import SupportHistorySection from './SupportHistorySection'
 
 interface Props {
   profile: UserProfile
@@ -70,6 +71,10 @@ const ProfileSettings = ({ profile, onChange, onLogout }: Props) => {
         participates={profile.participatesInRanking}
         onChange={(value) => handleField('participatesInRanking', value)}
       />
+
+      <Divider />
+
+      <SupportHistorySection userEmail={profile.email} />
 
       <Divider />
 

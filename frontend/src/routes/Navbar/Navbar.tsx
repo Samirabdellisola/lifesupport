@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { User } from 'lucide-react'
+import { Trophy, User } from 'lucide-react'
 import styled from 'styled-components'
 import { AppPaths } from '../paths/AppPaths'
 
@@ -9,9 +9,15 @@ const Navbar = () => {
       <Link to={AppPaths.home} className="brand">
         LifeSupport
       </Link>
-      <Link to={AppPaths.user} className="user-link" aria-label="Conta do usuário">
-        <User size={24} />
-      </Link>
+      <div className="links">
+        <Link to={AppPaths.rankings} className="nav-link">
+          <Trophy size={18} />
+          Rankings
+        </Link>
+        <Link to={AppPaths.user} className="user-link" aria-label="Conta do usuário">
+          <User size={24} />
+        </Link>
+      </div>
     </Nav>
   )
 }
@@ -38,10 +44,20 @@ const Nav = styled.nav`
     letter-spacing: 0.5px;
   }
 
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav-link,
   .user-link {
     display: flex;
     align-items: center;
+    gap: 6px;
     color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
     text-decoration: none;
 
     &:hover {

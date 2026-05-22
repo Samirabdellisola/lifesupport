@@ -1,55 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import {
+  clearAuthSession,
+  EMPTY_PROFILE,
+  loadAuthSession,
+  saveAuthSession,
+  type AuthSession,
+} from '../../data/authStorage'
 import GuestView from './components/GuestView'
 import ProfileSettings from './components/ProfileSettings'
 
-export interface UserProfile {
-  name: string
-  photo: string | null
-  address: {
-    street: string
-    number: string
-    city: string
-    state: string
-    country: string
-    zip: string
-  }
-  contacts: {
-    phone: string
-    whatsapp: string
-    website: string
-  }
-  participatesInRanking: boolean
-  isAuthenticated: boolean
-}
-
-const EMPTY_PROFILE: UserProfile = {
-  name: '',
-  photo: null,
-  address: { street: '', number: '', city: '', state: '', country: '', zip: '' },
-  contacts: { phone: '', whatsapp: '', website: '' },
-  participatesInRanking: false,
-  isAuthenticated: false,
-}
-
 const ScreenUser = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [profile, setProfile] = useState<UserProfile>(EMPTY_PROFILE)
+  const [session, setSession] = useState<AuthSession>(() => loadAuthSession())
+  const { isLoggedIn, profile } = session
 
-  const handleLogin = (name: string) => {
-    setProfile((prev) => ({ ...prev, name }))
-    setIsLoggedIn(true)
+  useEffect(() => {
+    if (isLoggedIn) saveAuthSession(session)
+  }, [isLoggedIn, session])
+
+  const handleLogin = (name: string, email: string) => {
+    setSession({
+      isLoggedIn: true,
+      profile: { ...EMPTY_PROFILE, name: name || email, email },
+    })
   }
 
   const handleLogout = () => {
-    setIsLoggedIn(false)
-    setProfile(EMPTY_PROFILE)
+    clearAuthSession()
+    setSession({ isLoggedIn: false, profile: EMPTY_PROFILE })
   }
 
   return (
     <Screen>
       {isLoggedIn ? (
-        <ProfileSettings profile={profile} onChange={setProfile} onLogout={handleLogout} />
+        <ProfileSettings
+          profile={profile}
+          onChange={(nextProfile) => setSession({ isLoggedIn: true, profile: nextProfile })}
+          onLogout={handleLogout}
+        />
       ) : (
         <GuestView onLogin={handleLogin} />
       )}

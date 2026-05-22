@@ -28,8 +28,12 @@ const CampaignCard = ({ campaign }: Props) => {
         <h2 className="title">{campaign.title}</h2>
         <div className="meta">
           <span><User size={13} /> {campaign.requesterName}</span>
-          <span><MapPin size={13} /> {campaign.city}, {campaign.country}</span>
+          <span><MapPin size={13} /> {campaign.city}, {campaign.state}</span>
           <span><Calendar size={13} /> {formattedDate}</span>
+        </div>
+        <div className="tags">
+          <span>{campaign.helpType}</span>
+          <span>{campaign.status}</span>
         </div>
         <p className="excerpt">{campaign.excerpt}</p>
       </div>
@@ -83,6 +87,22 @@ const Card = styled.article`
       display: flex;
       align-items: center;
       gap: 4px;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+
+    span {
+      background: #f0f4f8;
+      border-radius: 999px;
+      color: #1a1a2e;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 9px;
     }
   }
 
